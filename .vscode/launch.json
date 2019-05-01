@@ -1,0 +1,11 @@
+{
+     "configurations": [
+          {
+               "type": "java",
+               "name": "CodeLens (Launch) - Runner",
+               "request": "launch",
+               "mainClass": "revisor.Runner",
+               "projectName": "revisorTareas_922c348a"
+          }
+     ]
+}
