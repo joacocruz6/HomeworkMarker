@@ -5,8 +5,8 @@ from subprocess import Popen
 from pathlib import Path
 my_path = Path('.').resolve().parent.parent #The project directory
 src_path = Path('.').resolve().parent #The src directory
-sys.path.append(my_path)
-sys.path.append(src_path)
+sys.path.append(str(my_path))
+sys.path.append(str(src_path))
 
 class Marker:
      def __init__(self,archivo: str,numeroTest: int):
@@ -28,6 +28,6 @@ class Marker:
 
 def main():
      m = Marker("test2.py",3)
-     m.runTest(["0","4","2"],["1","5","2"])
+     m.runTest(["0","4","2","10"],["1","5","2","33"])
 if __name__=="__main__":
      main()
