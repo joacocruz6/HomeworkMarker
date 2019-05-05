@@ -1,3 +1,6 @@
+"""
+Some useful imports
+"""
 import os
 import sys
 import subprocess
@@ -23,17 +26,34 @@ except ModuleNotFoundError:
           print(e)
 """
 PythonTesterClass
-This class creates a python tester to do test on python files
+This class creates a python tester to do test on python files.
+:author: Joaquín Cruz
 """
 class PythonTester(AbstractTester):
+     """
+     __init__: Constructor of the class, receive a list of test input, it's matching
+     results of output and the name of the file to be tested. Creates an internal list
+     of subprocess within it
+
+     :self: Reference to the instance of the object
+     :test_input: the input for the tests to be executed
+     :test_output: list of correct outputs of the tests
+     :homework: the name of the file to be executed
+     :return: An instance of the class.
+     """
      def __init__(self,test_input: list, output: list,homework: str):
           super().__init__(test_input,output,homework)
+     """
+     compileFile:
+     Just pass because python does not compile
+     """
      def compileFile(self):
           pass
      """
-     run: None -> None
-     Just run the functions and compare it's results as the
+     run: 
+     Just run the functions and save the process on the process list
      runner
+     :self: The instance of the object
      """
      def run(self):
           for i in range(len(self.getInput())):
