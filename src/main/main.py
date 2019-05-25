@@ -25,7 +25,7 @@ if __name__=="__main__":
      (options,args)=parser.parse_args()
      fileType = options.filetype
      fileName = options.filename
-
+     
      #Getting the file type and executing it's name
      if fileType == 'py':
           fileName = fileName+'.py'
