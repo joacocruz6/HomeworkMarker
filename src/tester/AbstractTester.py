@@ -12,6 +12,7 @@ my_path = Path('.').resolve().parent.parent #The project directory
 src_path = Path('.').resolve().parent #The src directory
 sys.path.append(str(my_path))
 sys.path.append(str(src_path))
+from options import TestCase, TestOptions
 
 """
 AbstractTester class defines the base code for each of the tester of the different
