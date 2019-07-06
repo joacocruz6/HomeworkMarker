@@ -177,5 +177,7 @@ dmypy.json
 .history
 *.exe
 *.out
+*.class
+
 # End of https://www.gitignore.io/api/java,linux,python,visualstudiocode
 

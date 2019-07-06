@@ -1,5 +1,5 @@
 import java.util.*;
-class Hola{
+class Fib{
      public static int fibs(int n){
           if(n == 0 || n == 1) return 1;
           else return fibs(n-1)+fibs(n-2);

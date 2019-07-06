@@ -27,8 +27,8 @@ class CTester(AbstractTester):
           super().__init__(test_input,output,homework)
           self._outputFile = homework.split('.c')[0]+'.out'
      def compileFile(self):
-          subprocess.run(["gcc",self.getHomework(),"-o",self._outputFile])
+          subprocess.run(["gcc",self.getHomework(),"-o",self._outputFile],cwd=self._cwd)
      def run(self):
           for i in range(len(self.getInput())):
-               p = subprocess.run(['./'+self._outputFile],input=self.getInput()[i],universal_newlines=True,stdout=subprocess.PIPE)
+               p = subprocess.run(['./'+self._outputFile],input=self.getInput()[i],universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
                self.getProcess().append(p)

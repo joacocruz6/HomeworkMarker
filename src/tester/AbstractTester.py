@@ -38,6 +38,10 @@ class AbstractTester(ABC):
           self._test_output = test_output
           self._homework = homework
           self._process = []
+          self._cwd = os.getcwd()
+     
+     def setCwd(self,cwd: str):
+          self._cwd = cwd
      """
      getHomework: Getter method of the homework propertie of the object
      :self: The instance of the object

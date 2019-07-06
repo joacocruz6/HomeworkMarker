@@ -30,5 +30,5 @@ class RubyTester(AbstractTester):
      
      def run(self):
           for i in range(len(self.getInput())):
-               p = subprocess.run(["ruby",self.getHomework()],input=self.getInput()[i],universal_newlines=True,stdout=subprocess.PIPE)
+               p = subprocess.run(["ruby",self.getHomework()],input=self.getInput()[i],universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
                self.getProcess().append(p)

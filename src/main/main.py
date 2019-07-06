@@ -17,7 +17,7 @@ def main(tester: AbstractTester):
      tester.compileFile()
      tester.run()
      tester.mark()
-def makeConfigurations(inputFile: str,outputFile: str):
+def makeConfigurations(inputFile: str,outputFile: str) -> TestOptions:
      options = TestOptions()
      with open(inputFile,'r',encoding='utf-8') as f:
           for line in f:
@@ -40,12 +40,21 @@ if __name__=="__main__":
      parser.add_option("-f","--file",dest="filename",action="store",type="string",help="Name of the file to text without it's extension")
      parser.add_option("-i","--inputFile",dest="test_file",action="store",type="string",help="Route of the file where are the inputs")
      parser.add_option("-o","--outputFile",dest="output_file",action="store",type="string",help="Route of the file where are the outputs")
+     parser.add_option("-d","--directory",dest="dir",action="store",type="string",help="Absolut path to the directory where we are going to work")
      (options,args)=parser.parse_args()
      fileType = options.filetype
      fileName = options.filename
      input_file = options.test_file
      output_file = options.output_file
+     directory= options.dir
      test_config = makeConfigurations(input_file,output_file)
+     
+     testIn = list()
+     testOut = list()
+     for i in range(len(test_config)):
+          case = test_config.getCase(i)
+          testIn.append(case.getTestInput())
+          testOut.append(case.getTestOutput())
      #Getting the file type and executing it's name
      if fileType == 'py':
           fileName = fileName+'.py'
@@ -62,5 +71,6 @@ if __name__=="__main__":
      elif fileType == 'rb':
           fileName = fileName + '.rb'
           myTester = RubyTester(testIn,testOut,fileName)
+     myTester.setCwd(directory)
      #We run the main from the tester defined
      main(myTester)
