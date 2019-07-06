@@ -178,6 +178,6 @@ dmypy.json
 *.exe
 *.out
 *.class
-
+*.txt
 # End of https://www.gitignore.io/api/java,linux,python,visualstudiocode
 
