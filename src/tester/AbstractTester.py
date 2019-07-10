@@ -33,12 +33,10 @@ class AbstractTester(ABC):
      :homework: the name of the file to be executed
      :return: An instance of the class.
      """
-     def __init__(self,test_input: list,test_output: list,test_options: TestOptions,homework: str):
-          self._test_input = test_input
-          self._test_output = test_output
+     def __init__(self,test_options: TestOptions,homework: str):
+          self._options = test_options
           self._homework = homework
           self._process = []
-          self._options = test_options
           self._cwd = os.getcwd()
      """
      setCwd: Setter method for the directory of the homework
@@ -58,22 +56,6 @@ class AbstractTester(ABC):
      """
      def getHomework(self):
           return self._homework
-     """
-     getInput: Getter method for the test input propertie.
-
-     :self: The instance of the object
-     :return: The list of the test inputs
-     """
-     def getInput(self):
-          return self._test_input
-     """
-     getOutput: Getter method for the test outputs which have to be written
-
-     :self: The instance of the object
-     :return: The list of the outputs that the file have to get
-     """
-     def getOutput(self):
-          return self._test_output
      """
      getProcess: Getter method for the list of process
 
@@ -116,6 +98,6 @@ class AbstractTester(ABC):
                     print("-------------------------------------")
                else:
                     print("Failed test number {}".format(i+1))
-                    print("Expected value: {}".format(self.getOutput()[i]))
+                    print("Expected value: {}".format(self.getOptions()[i].getTestOutput()))
                     print("Homework returned: {}".format(self._process[i].stdout[:-1]))
                     print("-------------------------------------")

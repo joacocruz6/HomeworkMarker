@@ -58,19 +58,19 @@ if __name__=="__main__":
      #Getting the file type and executing it's name
      if fileType == 'py':
           fileName = fileName+'.py'
-          myTester = PythonTester(testIn,testOut,test_config,fileName)
+          myTester = PythonTester(test_config,fileName)
      elif fileType == 'java':
           fileName = fileName+'.java'
-          myTester = JavaTester(testIn,testOut,test_config,fileName)
+          myTester = JavaTester(test_config,fileName)
      elif fileType == 'c':
           fileName = fileName + '.c'
-          myTester = CTester(testIn,testOut,test_config,fileName)
+          myTester = CTester(test_config,fileName)
      elif fileType == 'cpp':
           fileName = fileName + '.cpp'
-          myTester = CPPTester(testIn,testOut,test_config,fileName)
+          myTester = CPPTester(test_config,fileName)
      elif fileType == 'rb':
           fileName = fileName + '.rb'
-          myTester = RubyTester(testIn,testOut,test_config,fileName)
+          myTester = RubyTester(test_config,fileName)
      myTester.setCwd(directory)
      #We run the main from the tester defined
      main(myTester)

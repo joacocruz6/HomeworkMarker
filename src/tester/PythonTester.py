@@ -42,8 +42,8 @@ class PythonTester(AbstractTester):
      :homework: the name of the file to be executed
      :return: An instance of the class.
      """
-     def __init__(self,test_input: list, output: list,options: TestOptions,homework: str):
-          super().__init__(test_input,output,options,homework)
+     def __init__(self,options: TestOptions,homework: str):
+          super().__init__(options,homework)
      """
      compileFile:
      Just pass because python does not compile
@@ -57,7 +57,7 @@ class PythonTester(AbstractTester):
      :self: The instance of the object
      """
      def run(self):
-          for i in range(len(self.getInput())):
+          for i in range(len(self.getOptions())):
                p = subprocess.run(["python3",self.getHomework()],input=self.getOptions()[i].getTestInput(),universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
                self.getProcess().append(p)
      

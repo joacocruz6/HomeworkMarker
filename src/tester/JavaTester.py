@@ -27,14 +27,14 @@ class JavaTester(AbstractTester):
      """
      The constructor of the class
      """
-     def __init__(self,test_input: list, output: list,options:TestOptions,homework: str):
-          super().__init__(test_input,output,options,homework)
+     def __init__(self,options:TestOptions,homework: str):
+          super().__init__(options,homework)
           self.runClass = homework.split(".java")[0]
      """
      """
      def compileFile(self):
           subprocess.run(["javac",self.getHomework()],cwd=self._cwd)
      def run(self):
-          for i in range(len(self.getInput())):
+          for i in range(len(self.getOptions())):
                p = subprocess.run(["java",self.runClass],input=self.getOptions()[i].getTestInput(),universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
                self.getProcess().append(p)

@@ -23,12 +23,12 @@ except ModuleNotFoundError:
           print(e)
 from options import TestCase, TestOptions
 class CTester(AbstractTester):
-     def __init__(self,test_input: list,output: list,options: TestOptions, homework: str):
-          super().__init__(test_input,output,options,homework)
+     def __init__(self,options: TestOptions, homework: str):
+          super().__init__(options,homework)
           self._outputFile = homework.split('.c')[0]+'.out'
      def compileFile(self):
           subprocess.run(["gcc",self.getHomework(),"-o",self._outputFile],cwd=self._cwd)
      def run(self):
-          for i in range(len(self.getInput())):
+          for i in range(len(self.getOptions())):
                p = subprocess.run(['./'+self._outputFile],input=self.getOptions()[i].getTestInput(),universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
                self.getProcess().append(p)
