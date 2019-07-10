@@ -2,7 +2,7 @@
 TestCase class is a test input and output for running the tests and getting the answers
 @author Joaquín Cruz
 """
-class TestCase:
+class TestCase(object):
      def __init_(self):
           self.__test_input = ""
           self.__test_output = ""

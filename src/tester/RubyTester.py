@@ -21,14 +21,14 @@ except ModuleNotFoundError:
           from AbstractTester import AbstractTester
      except ModuleNotFoundError as e:
           print(e)
-
+from options import TestCase, TestOptions
 class RubyTester(AbstractTester):
-     def __init__(self,test_input: list, output: list,homework: str):
-          super().__init__(test_input,output,homework)
+     def __init__(self,test_input: list, output: list,options: TestOptions, homework: str):
+          super().__init__(test_input,output,options,homework)
      def compileFile(self):
           pass
      
      def run(self):
           for i in range(len(self.getInput())):
-               p = subprocess.run(["ruby",self.getHomework()],input=self.getInput()[i],universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
+               p = subprocess.run(["ruby",self.getHomework()],input=self.getOptions()[i].getTestInput(),universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
                self.getProcess().append(p)

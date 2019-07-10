@@ -24,6 +24,7 @@ except ModuleNotFoundError:
           from AbstractTester import AbstractTester
      except ModuleNotFoundError as e:
           print(e)
+from options import TestCase, TestOptions
 """
 PythonTesterClass
 This class creates a python tester to do test on python files.
@@ -41,8 +42,8 @@ class PythonTester(AbstractTester):
      :homework: the name of the file to be executed
      :return: An instance of the class.
      """
-     def __init__(self,test_input: list, output: list,homework: str):
-          super().__init__(test_input,output,homework)
+     def __init__(self,test_input: list, output: list,options: TestOptions,homework: str):
+          super().__init__(test_input,output,options,homework)
      """
      compileFile:
      Just pass because python does not compile
@@ -57,6 +58,6 @@ class PythonTester(AbstractTester):
      """
      def run(self):
           for i in range(len(self.getInput())):
-               p = subprocess.run(["python3",self.getHomework()],input=self.getInput()[i],universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
+               p = subprocess.run(["python3",self.getHomework()],input=self.getOptions()[i].getTestInput(),universal_newlines=True,stdout=subprocess.PIPE,cwd=self._cwd)
                self.getProcess().append(p)
      

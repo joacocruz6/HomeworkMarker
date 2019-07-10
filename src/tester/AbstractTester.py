@@ -33,15 +33,24 @@ class AbstractTester(ABC):
      :homework: the name of the file to be executed
      :return: An instance of the class.
      """
-     def __init__(self,test_input: list,test_output: list,homework: str):
+     def __init__(self,test_input: list,test_output: list,test_options: TestOptions,homework: str):
           self._test_input = test_input
           self._test_output = test_output
           self._homework = homework
           self._process = []
+          self._options = test_options
           self._cwd = os.getcwd()
-     
+     """
+     setCwd: Setter method for the directory of the homework
+     :self: The instance of the object
+     :cwd: The string of the absolut path of the homework directory
+     """
      def setCwd(self,cwd: str):
           self._cwd = cwd
+     def setOptions(self,new_options: TestOptions):
+          self._test_options = new_options
+     def getOptions(self):
+          return self._options
      """
      getHomework: Getter method of the homework propertie of the object
      :self: The instance of the object
@@ -101,7 +110,7 @@ class AbstractTester(ABC):
      def mark(self):
           print("-------------------------------------")
           for i in range(len(self._process)):
-               isCorrect = self._process[i].stdout[:-1] == self.getOutput()[i]
+               isCorrect = self._process[i].stdout[:-1] == self.getOptions()[i].getTestOutput()
                if isCorrect:
                     print("Correct test number {}! Answer: {}".format(i+1,self._process[i].stdout[:-1]))
                     print("-------------------------------------")

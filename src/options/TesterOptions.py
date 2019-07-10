@@ -5,7 +5,7 @@ except ModuleNotFoundError:
           from TestCase import TestCase
      except ModuleNotFoundError as e:
           print(e)
-class TestOptions:
+class TestOptions(object):
      def __init__(self):
           self.__cases = list()
           self.__length = 0
@@ -14,6 +14,15 @@ class TestOptions:
      def add(self, case: TestCase):
           self.__cases.append(case)
           self.__length += 1
+     def __getitem__(self,key: int):
+          if key < 0 or key >= self.__length:
+               raise IndexError
+          return self.__cases[key]
+
+     """
+     TODO: Deprecated
+     
+     """
      def getCase(self,index: int):
           if index < 0 or index >= self.__length:
                raise IndexError
